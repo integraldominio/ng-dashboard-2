@@ -4,19 +4,19 @@
     <div id="scroll-area" class="navigation-hold" fxLayout="column">
       <!-- App Logo -->
       <div class="branding default-bg">
-          <img src="assets/images/logo.png" alt="" class="app-logo">
+          <img src="assets/images/logo.svg" alt="" style="width: 48px;"  >  <!-- class="app-logo" -->
           <!-- Two different logos for dark and light themes -->
-          <img 
-          src="assets/images/logo-text-white.png" 
-          alt="" 
+<!--           <img
+          src="assets/images/logo-text-white.png"
+          alt=""
           class="app-logo-text"
           *ngIf="themeService.activatedThemeName.indexOf('dark') !== -1">
-          <img 
-          src="assets/images/logo-text.png" 
-          alt="" 
+          <img
+          src="assets/images/logo-text.png"
+          alt=""
           class="app-logo-text"
           *ngIf="themeService.activatedThemeName.indexOf('dark') === -1">
-      </div>
+ -->      </div>
 
       <!-- Sidebar user -->
       <div class="app-user">
@@ -24,29 +24,29 @@
           <img src="assets/images/face-7.jpg" alt="">
         </div>
         <span class="app-user-name mb-05">
-          <mat-icon class="icon-xs text-muted">lock</mat-icon> 
+          <mat-icon class="icon-xs text-muted">lock</mat-icon>
           Watson Joyce
         </span>
         <!-- Small buttons -->
         <div class="app-user-controls">
-          <button 
+          <button
           class="text-muted"
-          mat-icon-button 
+          mat-icon-button
           mat-xs-button
           [matMenuTriggerFor]="appUserMenu">
             <mat-icon>settings</mat-icon>
           </button>
-          <button 
+          <button
           class="text-muted"
-          mat-icon-button 
+          mat-icon-button
           mat-xs-button
           matTooltip="Inbox"
           routerLink="/inbox">
             <mat-icon>email</mat-icon>
           </button>
-          <button 
+          <button
           class="text-muted"
-          mat-icon-button 
+          mat-icon-button
           mat-xs-button
           matTooltip="Sign Out"
           routerLink="/sessions/signin">
@@ -80,8 +80,8 @@
   <!-- Top Bar -->
   <!-- Template reference variables of Left sidebar and Right notification is supplied -->
   <!-- Listens language change event -->
-  <topbar 
-  [sidenav]="sidenav" 
+  <topbar
+  [sidenav]="sidenav"
   [notificPanel]="notificationPanel"
   (onLangChange)="translate.use($event)"></topbar>
   <app-breadcrumb #breadcrumb></app-breadcrumb>
