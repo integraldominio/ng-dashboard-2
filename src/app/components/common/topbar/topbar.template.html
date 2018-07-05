@@ -57,7 +57,7 @@
     cols="2"
     rowHeight="48px">
       <mat-grid-tile
-      *ngFor="let theme of egretThemes"
+      *ngFor="let theme of dashThemes"
       (click)="changeTheme(theme)">
         <div mat-menu-item [title]="theme.name">
           <div [style.background]="theme.baseColor" class="egret-swatch"></div>

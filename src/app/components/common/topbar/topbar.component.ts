@@ -41,7 +41,7 @@ export class TopbarComponent implements OnInit {
     this.sidenav.toggle();
   }
   toggleCollapse() {
-        let appBody = document.body;
+        const appBody = document.body;
         domHelper.toggleClass(appBody, 'collapsed-menu');
         domHelper.removeClass(document.getElementsByClassName('has-submenu'), 'open');
     }

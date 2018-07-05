@@ -108,7 +108,7 @@ $primary-dark: darken( map-get($md-primary, 500), 8% );
         border-color: map-get($md-primary, 500);
     }
     .sidebar-panel.mat-sidenav {
-        background: url('../../images/sidebar-bg.jpg') no-repeat;
+       /* background: url('../../images/sidebar-bg.jpg') no-repeat; */
     }
     .breadcrumb-bar,
     .default-bg {

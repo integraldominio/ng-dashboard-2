@@ -3,25 +3,25 @@ import * as domHelper from '../../helpers/dom.helper';
 @Injectable()
 export class ThemeService {
   dashThemes = [{
-    name: 'theme-dark-purple',
+    name: 'egret-dark-purple',
     baseColor: '#9c27b0',
     isActive: false
   }, {
-    name: 'theme-dark-pink',
+    name: 'egret-dark-pink',
     baseColor: '#e91e63',
     isActive: false
   }, {
-    name: 'theme-blue',
+    name: 'egret-blue',
     baseColor: '#247ba0',
     isActive: false
   }, {
-    name: 'theme-indigo',
+    name: 'egret-indigo',
     baseColor: '#3f51b5',
     isActive: true
   }];
   activatedThemeName: String;
   constructor() {
-    this.changeTheme({name: 'theme-indigo'});
+    this.changeTheme({name: 'egret-indigo'});
   }
   changeTheme(theme) {
     domHelper.changeTheme(this.dashThemes, theme.name);
