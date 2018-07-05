@@ -10,7 +10,7 @@ export class TopbarComponent implements OnInit {
   @Input() sidenav;
   @Input() notificPanel;
   @Output() onLangChange = new EventEmitter<any>();
-  currentLang = 'en';
+  currentLang = 'pt-br';
   availableLangs = [{
     name: 'English',
     code: 'en',
