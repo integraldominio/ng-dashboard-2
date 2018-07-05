@@ -30,7 +30,7 @@ export const rootRouterConfig: Routes = [
       {
         path: 'dashboard', 
         loadChildren: './views/others/others.module#OthersModule', 
-        data: { title: 'Dashboard Blank', breadcrumb: 'DASHBOARD'}
+        data: { title: 'Dashboard', breadcrumb: 'DASHBOARD'}
       }
     ]
   },
