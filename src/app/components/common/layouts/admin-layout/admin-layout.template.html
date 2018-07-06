@@ -80,10 +80,12 @@
   <!-- Top Bar -->
   <!-- Template reference variables of Left sidebar and Right notification is supplied -->
   <!-- Listens language change event -->
+  <!-- removido problema translate (onLangChange)="translate.use($event)" -->
+
   <topbar
   [sidenav]="sidenav"
   [notificPanel]="notificationPanel"
-  (onLangChange)="translate.use($event)"></topbar>
+></topbar>
   <app-breadcrumb #breadcrumb></app-breadcrumb>
 
   <!-- App content -->
@@ -97,7 +99,7 @@
     <router-outlet></router-outlet>
   </div>
   <!-- Notificaation bar -->
-  <mat-sidenav #notificationPanel mode="over" class="" align="end">
+  <mat-sidenav #notificationPanel mode="over" class="" position="end">
     <div class="navigation-hold" fxLayout="column">
       <app-notifications [notificPanel]="notificationPanel"></app-notifications>
     </div>

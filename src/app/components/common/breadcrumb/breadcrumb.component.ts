@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { RoutePartsService } from '../../../services/route-parts/route-parts.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -8,24 +9,26 @@ import { RoutePartsService } from '../../../services/route-parts/route-parts.ser
   styleUrls: ['./breadcrumb.component.css']
 })
 export class BreadcrumbComponent implements OnInit {
-  routeParts:any[];
-  public isEnabled: boolean = true;
+  routeParts: any[];
+  public isEnabled = true;
   constructor(
     private router: Router,
-    private routePartsService: RoutePartsService, 
+    private routePartsService: RoutePartsService,
     private activeRoute: ActivatedRoute
   ) {
-    this.router.events.filter(event => event instanceof NavigationEnd).subscribe((routeChange) => {
+    this.router.events.pipe( filter(event => event instanceof NavigationEnd))
+      .subscribe((routeChange) => {
       this.routeParts = this.routePartsService.generateRouteParts(this.activeRoute.snapshot);
       // generate url from parts
       this.routeParts.reverse().map((item, i) => {
         item.breadcrumb = this.parseText(item);
         item.urlSegments.forEach((urlSegment, j) => {
-          if(j === 0)
+          if (j === 0) {
             return item.url = `${urlSegment.path}`;
-          item.url += `/${urlSegment.path}`
+          }
+          item.url += `/${urlSegment.path}`;
         });
-        if(i === 0) {
+        if (i === 0) {
           return item;
         }
         // prepend previous part to current part
@@ -39,7 +42,7 @@ export class BreadcrumbComponent implements OnInit {
 
   parseText(part) {
     part.breadcrumb = part.breadcrumb.replace(/{{([^{}]*)}}/g, function (a, b) {
-      var r = part.params[b];
+      const r = part.params[b];
       return typeof r === 'string' ? r : a;
     });
     return part.breadcrumb;

@@ -3,13 +3,12 @@ import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import * as hopscotch from 'hopscotch';
-import 'rxjs/add/operator/filter';
-import { RoutePartsService } from "./services/route-parts/route-parts.service";
+import { filter } from 'rxjs/operators';
+import { RoutePartsService } from './services/route-parts/route-parts.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `<router-outlet></router-outlet>`
 })
 export class AppComponent implements OnInit {
   appTitle = 'Dashboard';
@@ -35,7 +34,7 @@ export class AppComponent implements OnInit {
   * but DOM query methods(querySelector, getElementsByTagName etc) will not work
   */
   tourSteps(): any {
-    let self = this;
+    const self = this;
     return {
       id: 'hello-egret',
       showPrevButton: true,
@@ -65,15 +64,17 @@ export class AppComponent implements OnInit {
     }
   }
   changePageTitle() {
-    this.router.events.filter(event => event instanceof NavigationEnd).subscribe((routeChange) => {
-      var routeParts = this.routePartsService.generateRouteParts(this.activeRoute.snapshot);
-      if (!routeParts.length)
+    this.router.events.pipe( filter(event => event instanceof NavigationEnd) )
+    .subscribe((routeChange) => {
+      const routeParts = this.routePartsService.generateRouteParts(this.activeRoute.snapshot);
+      if (!routeParts.length) {
         return this.title.setTitle(this.appTitle);
+      }
       // Extract title from parts;
       this.pageTitle = routeParts
                       .reverse()
                       .map((part) => part.title )
-                      .reduce((partA, partI) => {return `${partA} > ${partI}`});
+                      .reduce((partA, partI) => `${partA} > ${partI}`);
       this.pageTitle += ` | ${this.appTitle}`;
       this.title.setTitle(this.pageTitle);
 

@@ -4,8 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { TranslateModule } from 'ng2-translate/ng2-translate';
-import { 
+// import { TranslateModule } from 'ng2-translate/ng2-translate';
+import {
   MatSidenavModule,
   MatListModule,
   MatTooltipModule,
@@ -54,14 +54,14 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     MatCardModule,
     MatProgressSpinnerModule,
     CommonDirectivesModule,
-    TranslateModule
+    /* TranslateModule */
   ],
   declarations: [
     AdminLayoutComponent,
     AuthLayoutComponent,
-    TopbarComponent, 
-    NavigationComponent, 
-    NotificationsComponent, 
+    TopbarComponent,
+    NavigationComponent,
+    NotificationsComponent,
     BreadcrumbComponent
   ],
   providers: [ThemeService],

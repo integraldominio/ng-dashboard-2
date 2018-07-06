@@ -5,10 +5,10 @@ import { NavigationService } from "../../../services/navigation/navigation.servi
   selector: 'navigation',
   templateUrl: './navigation.template.html'
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
   hasIconTypeMenuItem;
-  iconTypeMenuTitle:string;
-  menuItems:any[];
+  iconTypeMenuTitle: string;
+  menuItems: any[];
 
   constructor(private navService: NavigationService) {}
   ngOnInit() {
@@ -16,7 +16,7 @@ export class NavigationComponent {
     // Loads menu items from NavigationService
     this.navService.menuItems$.subscribe(menuItem => {
       this.menuItems = menuItem;
-      //Checks item list has any icon type.
+      // Checks item list has any icon type.
       this.hasIconTypeMenuItem = !!this.menuItems.filter(item => item.type === 'icon').length;
     });
   }

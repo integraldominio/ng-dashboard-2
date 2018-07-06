@@ -1,15 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { 
-  Router, 
-  NavigationEnd, 
-  RouteConfigLoadStart, 
-  RouteConfigLoadEnd, 
-  ResolveStart, 
-  ResolveEnd 
-} from '@angular/router';
-import { Subscription } from "rxjs/Subscription";
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { filter } from 'rxjs/operators';
+import { Router, NavigationEnd, RouteConfigLoadStart, RouteConfigLoadEnd,  ResolveStart,  ResolveEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MatSidenav } from '@angular/material';
-import { TranslateService } from 'ng2-translate/ng2-translate';
+// import { TranslateService } from 'ng2-translate/ng2-translate';
 import { ThemeService } from '../../../../services/theme/theme.service';
 import * as Ps from 'perfect-scrollbar';
 import * as domHelper from '../../../../helpers/dom.helper';
@@ -18,7 +12,7 @@ import * as domHelper from '../../../../helpers/dom.helper';
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.template.html'
 })
-export class AdminLayoutComponent implements OnInit {
+export class AdminLayoutComponent implements OnInit, OnDestroy {
   private isMobile;
   isSidenavOpen: Boolean = false;
   isModuleLoading: Boolean = false;
@@ -27,33 +21,33 @@ export class AdminLayoutComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public translate: TranslateService,
+    // public translate: TranslateService,
     public themeService: ThemeService
   ) {
     // Close sidenav after route change in mobile
-    router.events.filter(event => event instanceof NavigationEnd).subscribe((routeChange: NavigationEnd) => {
-      if(this.isNavOver()) {
-        this.sideNave.close()
+    router.events.pipe( filter(event => event instanceof NavigationEnd)).subscribe((routeChange: NavigationEnd) => {
+      if ( this.isNavOver()) {
+        this.sideNave.close();
       }
     });
-    
+
     // Translator init
-    const browserLang: string = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    // const browserLang: string = translate.getBrowserLang();
+    // translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
   }
   ngOnInit() {
     // Initialize Perfect scrollbar for sidenav
-    let navigationHold = document.getElementById('scroll-area');
+    const navigationHold = document.getElementById('scroll-area');
     Ps.initialize(navigationHold, {
       suppressScrollX: true
     });
-    
+
     // FOR MODULE LOADER FLAG
     this.moduleLoaderSub = this.router.events.subscribe(event => {
-      if(event instanceof RouteConfigLoadStart || event instanceof ResolveStart) {
+      if (event instanceof RouteConfigLoadStart || event instanceof ResolveStart) {
         this.isModuleLoading = true;
       }
-      if(event instanceof RouteConfigLoadEnd || event instanceof ResolveEnd) {
+      if (event instanceof RouteConfigLoadEnd || event instanceof ResolveEnd) {
         this.isModuleLoading = false;
       }
     });

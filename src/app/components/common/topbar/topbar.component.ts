@@ -21,7 +21,7 @@ export class TopbarComponent implements OnInit {
   {
     name: 'Portuguese',
     code: 'pt-br',
-  }]
+  }];
   dashThemes;
 
   constructor(private themeService: ThemeService) {}
@@ -41,7 +41,7 @@ export class TopbarComponent implements OnInit {
     this.sidenav.toggle();
   }
   toggleCollapse() {
-        const appBody = document.body;
+        let appBody = document.body;
         domHelper.toggleClass(appBody, 'collapsed-menu');
         domHelper.removeClass(document.getElementsByClassName('has-submenu'), 'open');
     }

@@ -8,6 +8,5 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
-
-// import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.log(err));
