@@ -17,7 +17,6 @@ interface IChildItem {
 
 @Injectable()
 export class NavigationService {
-  constructor() {}
 
   defaultMenu: IMenuItem[] = [
     {
@@ -26,9 +25,23 @@ export class NavigationService {
       tooltip: 'Dashboard',
       icon: 'dashboard',
       state: 'dashboard'
-    }
+    },
+    {
+      name: 'FORMS',
+      type: 'dropDown',
+      tooltip: 'Forms',
+      icon: 'description',
+      state: 'forms',
+      sub: [
+        {name: 'BASIC', state: 'basic'},
+        {name: 'EDITOR', state: 'editor'},
+        {name: 'UPLOAD', state: 'upload'},
+        {name: 'WIZARD', state: 'wizard'}
+      ]
+    },
   ]
 
+  constructor() {}
 
   // Icon menu TITLE at the very top of navigation.
   // This title will appear if any icon type item is present in menu.
