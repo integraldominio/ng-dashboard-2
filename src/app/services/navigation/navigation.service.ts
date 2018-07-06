@@ -39,7 +39,20 @@ export class NavigationService {
         {name: 'WIZARD', state: 'wizard'}
       ]
     },
-  ]
+    {
+      name: 'FORMS2',
+      type: 'dropDown',
+      tooltip: 'Forms',
+      icon: 'description',
+      state: 'forms',
+      sub: [
+        {name: 'BASIC', state: 'basic'},
+        {name: 'EDITOR', state: 'editor'},
+        {name: 'UPLOAD', state: 'upload'},
+        {name: 'WIZARD', state: 'wizard'}
+      ]
+    },
+  ];
 
   constructor() {}
 
